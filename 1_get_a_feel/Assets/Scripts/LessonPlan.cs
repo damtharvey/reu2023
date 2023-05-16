@@ -65,7 +65,7 @@ public class LessonPlan : MonoBehaviour
                 state = State.Fuzzy;
                 classifier.previousLoss = float.PositiveInfinity;
                 classifier.previousAccuracy = 0;
-                classifier.Instantiate(100, -30, 30, 15);
+                classifier.Instantiate(100, -30, 30, 10);
                 instructions.text =
                     "Find a line that best separates the red and blue dots. Bright dots are misclassified.\n"
                     + "Controls:\n"
