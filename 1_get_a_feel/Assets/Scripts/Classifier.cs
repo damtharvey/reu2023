@@ -35,10 +35,14 @@ public class Classifier : MonoBehaviour
     public float previousAccuracy;
 
     public float previousLoss;
+
+    public float bestLoss;
+
+    public float bestAccuracy;
     
     List<GameObject> _dataset;
 
-    public void Instantiate(int numberOfSpheres, float low, float high, float noise)
+    public void MakeLinearlySeparableInstance(int numberOfSpheres, float low, float high, float noise)
     {
         if (_dataset is not null)
         {
@@ -49,7 +53,25 @@ public class Classifier : MonoBehaviour
         }
         weight = 0f;
         bias = 0f;
-        _dataset = generator.GenerateSpheres(numberOfSpheres, low, high, noise);
+        _dataset = generator.GenerateLinearlySeparableSpheres(numberOfSpheres, low, high, noise);
+        bestLoss = Mathf.Infinity;
+        bestAccuracy = 0f;
+    }
+    
+    public void MakeXorInstance(int numberOfSpheres, float low, float high, float noise)
+    {
+        if (_dataset is not null)
+        {
+            foreach (var sphere in _dataset)
+            {
+                Destroy(sphere);
+            }
+        }
+        weight = 0f;
+        bias = 0f;
+        _dataset = generator.GenerateXorSpheres(numberOfSpheres, low, high, noise);
+        bestLoss = Mathf.Infinity;
+        bestAccuracy = 0f;
     }
 
     // Update is called once per frame
@@ -99,7 +121,9 @@ public class Classifier : MonoBehaviour
             loss -= labelFloat * SafeLog(predictionFloat) + (1f - labelFloat) * SafeLog(1f - predictionFloat);
         }
         previousAccuracy = Convert.ToSingle(correct) / _dataset.Count;
+        bestAccuracy = Mathf.Max(bestAccuracy, previousAccuracy);
         previousLoss = loss / _dataset.Count;
+        bestLoss = Mathf.Min(bestLoss, previousLoss);
     }
 
     void UpdateLine()

@@ -40,7 +40,7 @@ public class LessonPlan : MonoBehaviour
     void Start()
     {
         state = State.Sharp;
-        classifier.Instantiate(100, -30, 30, 0);
+        classifier.MakeLinearlySeparableInstance(100, -30, 30, 0);
         instructions.text =
             "Find a line that best separates the red and blue dots. Bright dots are misclassified.\n"
             + "Controls:\n"
@@ -54,7 +54,9 @@ public class LessonPlan : MonoBehaviour
         uiText.text = $"Weight: {classifier.weight:0.###}\n"
                       + $"Bias: {classifier.bias:0.###}\n"
                       + $"Accuracy: {classifier.previousAccuracy:0.###}\n"
-                      + $"Loss: {classifier.previousLoss}";
+                      + $"Loss: {classifier.previousLoss}\n"
+                      + $"Best accuracy: {classifier.bestAccuracy}\n"
+                      + $"Best loss: {classifier.bestLoss}";
         if (state == State.Sharp && classifier.previousAccuracy >= 0.98)
         {
             instructions.text =
@@ -65,12 +67,10 @@ public class LessonPlan : MonoBehaviour
                 state = State.Fuzzy;
                 classifier.previousLoss = float.PositiveInfinity;
                 classifier.previousAccuracy = 0;
-                classifier.Instantiate(100, -30, 30, 10);
+                classifier.MakeLinearlySeparableInstance(100, -30, 30, 5);
                 instructions.text =
                     "Find a line that best separates the red and blue dots. Bright dots are misclassified.\n"
-                    + "Controls:\n"
-                    + "Press A or D to decrease or increase weight.\n"
-                    + "Press S or W to decrease or increase bias.";
+                    + "This instance has some noise. You probably can't classify them all correctly.";
             }
         }
         else if (state == State.Sharp && classifier.previousAccuracy < 0.98)
@@ -84,14 +84,17 @@ public class LessonPlan : MonoBehaviour
         else if (state == State.Fuzzy && classifier.previousAccuracy >= 0.8)
         {
             instructions.text =
-                "Find a line that best separates the red and blue dots. Bright dots are misclassified.\n\n"
+                "Find a line that best separates the red and blue dots. Bright dots are misclassified.\n"
+                + "This instance has some noise. You probably can't classify them all correctly.\n"
                 + "Close enough. Press Space to continue.";
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 state = State.Xor;
-                // classifier.Instantiate(100, -30, 30, 15);
+                classifier.MakeXorInstance(100, -30, 30, 5);
                 instructions.text =
-                    "Hold on. Haven't written this part yet.\n";
+                    "Here is the (trivial in hindsight) XOR problem.\n"
+                    + "What's your best accuracy?\n\n"
+                    + "Press Escape when you're sick of this.";
             }
             
         }
@@ -99,9 +102,12 @@ public class LessonPlan : MonoBehaviour
         {
             instructions.text =
                 "Find a line that best separates the red and blue dots. Bright dots are misclassified.\n"
-                + "Controls:\n"
-                + "Press A or D to decrease or increase weight.\n"
-                + "Press S or W to decrease or increase bias.";
+                + "This instance has some noise. You probably can't classify them all correctly.\n"
+                + "Close enough. Press Space to continue.";
         }
+        // else // state == State.Xor
+        // {
+        //     
+        // }
     }
 }

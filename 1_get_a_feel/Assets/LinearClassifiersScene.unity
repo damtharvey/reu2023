@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c55e538b1850aa4697df7ed6ae20a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWeightMagnitude: 4
+  maxWeightMagnitude: 3
   minWeightMagnitude: 0.5
   redSphere: {fileID: 5688613462319275894, guid: b0d1e91cb1473374887d19c93a309707,
     type: 3}
@@ -1070,6 +1070,8 @@ MonoBehaviour:
   biasSensitivity: 10
   previousAccuracy: 0
   previousLoss: 0
+  bestLoss: 0
+  bestAccuracy: 0
 --- !u!4 &1653538528
 Transform:
   m_ObjectHideFlags: 0
