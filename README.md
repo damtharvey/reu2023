@@ -1,6 +1,6 @@
 # TREU 2023
 
-## Note: Due to formatting inconsistencies, these notebooks are meant to be run with Jupyter Notebook and not Google Colab. If you run them with Google Colab, the functionality will be the same, but the formatting may not. See "Installing Jupyter Notebook" for instructions on how to install and run Jupyter Notebook with Anaconda, Miniconda, or pip. Also, it may be useful for you to run these notebooks in a separate Python virtual environment. See "Virtual Environments" below for information on why virtual environments are useful, when you should/should not use them, and how to create them. 
+## Note: Due to formatting inconsistencies, these notebooks are meant to be run with Jupyter Notebook and not Google Colab. If you run them with Google Colab, the functionality will be the same, but the formatting may not. See "Installing Jupyter Notebook" for instructions on how to install and run Jupyter Notebook with Anaconda, Miniconda, or pip. Also, it may be useful for you to run these notebooks in a separate Python virtual environment. See "Virtual Environments" below for information on why virtual environments are useful, when you should/should not use them, and how to create/modify them. 
 
 # Installing Jupyter Notebook: 
 
