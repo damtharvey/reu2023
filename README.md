@@ -4,19 +4,33 @@
 
 # Installing Jupyter Notebook: 
 
-## Anaconda/Miniconda (Windows)
 The setup for Anaconda and Miniconda will essentially be the same. Look here: https://www.educative.io/answers/anaconda-vs-miniconda to read about the differences between Anaconda and Miniconda
 
-1. Download and install Anaconda here: https://www.anaconda.com/. For Miniconda, download and install it here: https://docs.conda.io/en/latest/miniconda.html
-2. Open the Anaconda Prompt
-3. To install Jupyter, use the command: `conda install jupyter`
-4. To open Jupyter Notebook, use the command: `jupyter notebook`
+## Anaconda(Windows, macOS, or Linux/Unix)
+1. Download Anaconda here: https://www.anaconda.com/
+2. Begin Installation Process:
+- Windows: Run the .exe installer
+- macOS: Open the .pkg file
+- Linux/Unix: Open the terminal and run: `bash Anaconda-latest-Linux-x86_64.sh`
+3. Follow the prompts on the screen
+4. Verfiy your installation of conda by opening the Anaconda Prompt and running `conda list`. A list of installed packages should appear if Miniconda installed correctly. Note: For macOS and Linux.Unix, you can verify in the terminal, but you will have to close and open your terminal again for changes to take effect
+5. Open the Anaconda Prompt
+6. To install Jupyter, use the command: `conda install jupyter`
+7. To open Jupyter Notebook, use the command: `jupyter notebook`
 
-## Anaconda/Miniconda (macOS)
+## Miniconda (Windows, macOS, or Linux/Unix)
+1. Download Miniconda: https://docs.conda.io/en/latest/miniconda.html
+2. Begin Installation Process:
+- Windows: Run the .exe installer
+- macOS: Open the terminal and run: `bash Miniconda3-latest-MacOSX-x86_64.sh`
+- Linux/Unix: Open the terminal and run: `bash Miniconda3-latest-Linux-x86_64.sh`
+3. Follow the prompts on the screen
+4. Verfiy your installation of conda by opening Anaconda Prompt and running `conda list`. A list of installed packages should appear if Miniconda installed correctly.
+5. Open the Anaconda Prompt
+6. To install Jupyter, use the command: `conda install jupyter`
+7. To open Jupyter Notebook, use the command: `jupyter notebook`
 
-## Anaconda/Miniconda (Linux/Unix)
-
-## pip (Windows, macOS, or Unix) 
+## pip (Windows, macOS, or Linux/Unix) 
 1. In order to install and use pip, you will need make sure that you have a working version of Python installed on your computer. See "Installing Python" below for details on how to install Python. You can verify an installation of Python using the command `python --version` (`python3 --version` on macOS).
 2. Typically, pip will come with Python. You can check using the command: `pip --version`. If it is not already installed, run the following commands to install it on your machine: 
 
