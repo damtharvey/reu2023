@@ -26,3 +26,20 @@ Packages can be installed in your active envrionment using `conda install packag
 For more information about conda environments, how to create and modify them, and what they can be useful for follow these links: 
  - https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
  - https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/
+
+# Using Jupyter Notebooks Remotely
+You can use your local browser to view a Jupyter Notebook on any machine you have access to, such as your own GPU server.
+
+On the remote server, with your environment activated,
+```
+jupyter notebook --no-browser --port=8080
+```
+This should give your some http links. Copy any one of those links. You can change the port number from 8080 if you prefer.
+
+Then, on your local machine, e.g. your laptop, run
+```
+ssh -L 8080:localhost:8080 yourname@remoteserver
+```
+where `yourname` is your user name and `remoteserver` is the host name of the remote server.
+
+Then, open a web browser and paste the link that you copied from before.
