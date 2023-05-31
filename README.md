@@ -44,15 +44,19 @@ where `yourname` is your user name and `remoteserver` is the host name of the re
 
 Then, open a web browser and paste the link that you copied from before.
 
-Or, another way to do it using your web-browser on the local machine.
+Or, another way to do it using your web-browser on the local machine and CHPC.
 1. Using your web-browser on the local machine open new window with the following address:
 ```
 https://notchpeak.chpc.utah.edu:3300
 ```
 Accept the connection and proceed to notchpeak.chpc.utah.edu
+
 2. Log in using your Username (U-ID starting with letter 'u') and Password.
+
 3. Now you are on CHPC. From the main page create a new terminal by clicking "+" button, select "xterm"
+
 4. Once it launches, write command "myallocation", you should get something like this:
+
 ```
 [u1111111@notchpeak1:~]$ myallocation
 	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak
@@ -84,11 +88,14 @@ Accept the connection and proceed to notchpeak.chpc.utah.edu
 	You have a GPU allocation on lonepeak. Account: lonepeak-gpu, Partition: lonepeak-gpu
 ```
 5. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np``` or ```notchpeak-gpu:notchpeak-gpu```. Also pay attention to an allocation for this account (notchpeak/lonepeak...)
+
 6. Let's connect to the chosen account to access gpu resources. Here is an example for soc-gpu-np:soc-gpu-np allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
+
 ```
 [u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1
 --ntasks=1 --gres=gpu -t 1:00:00 --pty bash
 ```
+
 7. After success, we are on the GPU-allocation from where we can launch Jupyter Notebook. Use the following commands to launch Jupyter Notebook:
 ```
 [u1111111@notch367:~]$ module load python3
