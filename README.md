@@ -19,20 +19,38 @@ The setup for Anaconda and Miniconda will essentially be the same. Look here: ht
 7. To open Jupyter Notebook, use the command: `jupyter notebook`
 
 ## Installing Miniconda to CHPC:
-1. Open new terminal on your machine and connect to CHPC using command:
-```ssh [your_uid]@notchpeak.chpc.utah.edu```
-The password is the same as for your Canvas account.
+1. Open new terminal on your machine and connect to CHPC using command: `ssh [your_uid]@notchpeak.chpc.utah.edu`. The password is the same as for your Canvas account.
 2. Download Miniconda installer:
+
 ```[u1111111@notchpeak1:~]$ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh```
+
 3. Run the installer:
+
 ```[u1111111@notchpeak1:~]$ bash ./Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/software/pkg/miniconda3 -s```
+
 4. Create an user environment module. First create a directory where the user environment module hierarchy will reside, and then copy our miniconda module file to this directory.
+
 ```[u1111111@notchpeak1:~]$ mkdir -p $HOME/MyModules/miniconda3```
+
 ```[u1111111@notchpeak1:~]$ cp /uufs/chpc.utah.edu/sys/installdir/python/modules/miniconda3/latest.lua $HOME/MyModules/miniconda3```
+
 5. Load the user space miniconda module.
+
 ```[u1111111@notchpeak1:~]$ module use $HOME/MyModules```
+
 ```[u1111111@notchpeak1:~]$ module load miniconda3/latest```
-6. Verify your installation of conda by opening the terminal (or Anaconda Prompt on Windows) and running `conda list`.
+
+6. Verify your installation of conda by running `conda list`.
+
+7. To create an environment, use the command: `conda create -n environment_name`, where `environment_name` is any name you want to name your environment. 
+
+8. Now initialize conda by typing `conda init --all`. After you are done, the session can be closed. Open another terminal within CHPC to activate your conda and install jupyter as described below. 
+
+9. Then activate your environment with `conda activate environment_name`.
+
+8. To install Jupyter, with your environment activated, use the command: `conda install jupyter`
+
+9. Feel free to close this terminal after you are done.
 
 # Installing Packages
 **Python should already be installed in any environments you make with `conda`**. To install it manually, or to change the version, activate your environment and run `conda install python=version`, where `version` is the Python version you want to install, e.g. `3.10`. The material in this repository assumes you have at least version `3.10`.
@@ -63,26 +81,28 @@ Then, open a web browser and paste the link that you copied from before.
 If you do not have a remote machine or GPU on your machine, you can use CHPC (super-computer of the University of Utah).
 
 ## Using Jupyter Notebooks on CHPC
-1. Using your web-browser on the local machine open new window with the following address:
+1. Follow the instructions on Miniconda Installation for CHPC (if you haven't done it yet on CHPC).
+
+2. Using your web-browser on the local machine open new window with the following address:
 ```
 https://notchpeak.chpc.utah.edu:3300
 ```
 Accept the connection and proceed to notchpeak.chpc.utah.edu
 
-2. Log in using your Username (U-ID starting with letter 'u') and Password.
+3. Log in using your Username (U-ID starting with letter 'u') and Password.
 
-3. Now you are on CHPC. From the main page create a new terminal by clicking "+" button, select "xterm"
+4. Now you are on CHPC. From the main page create a new terminal by clicking "+" button, select "xterm"
 
-4. Download this repository to CHPC (if you haven't done it before)
-
-```
-[u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
-```
-
-5. Once you are done, write command "myallocation", you should get something like this:
+5. Download this repository to CHPC (if you haven't done it before)
 
 ```
-[u1111111@notchpeak1:~]$ myallocation
+(base) [u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
+```
+
+6. Once you are done, write command "myallocation", you should get something like this:
+
+```
+(base) [u1111111@notchpeak1:~]$ myallocation
 	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak
 	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak-shared
 	You have an owner allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-gpu-kp
@@ -111,17 +131,18 @@ Accept the connection and proceed to notchpeak.chpc.utah.edu
 	You can use preemptable mode on lonepeak. Account: owner-guest, Partition: lonepeak-guest
 	You have a GPU allocation on lonepeak. Account: lonepeak-gpu, Partition: lonepeak-gpu
 ```
-6. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np```, ```notchpeak-gpu:notchpeak-gpu``` (containts ```gpu```). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
+7. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np```, ```notchpeak-gpu:notchpeak-gpu``` (containts ```gpu```). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
 
-7. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
+8. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
 
 ```
-[u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1
+(base) [u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1
 --ntasks=1 --gres=gpu -t 1:00:00 --pty bash
 ```
 
-8. After success, we are on the GPU-allocation from where we can launch Jupyter Notebook. Use the following commands to launch Jupyter Notebook:
+9. After success, we are on the GPU-allocation from where we can launch Jupyter Notebook. Use the following commands to launch Jupyter Notebook:
 ```
-[u1111111@notch367:~]$ module load python3
-[u1111111@notch367:~]$ jupyter notebook --browser=/usr/bin/google-chrome
+(base) [u1111111@notch367:~]$ conda activate [your_env_name]
+(your_env_name) [u1111111@notch367:~]$ ml cuda
+(your_env_name) [u1111111@notch367:~]$ python3 -m notebook --browser=/usr/bin/google-chrome
 ```
