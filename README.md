@@ -57,7 +57,13 @@ Accept the connection and proceed to notchpeak.chpc.utah.edu
 
 3. Now you are on CHPC. From the main page create a new terminal by clicking "+" button, select "xterm"
 
-4. Once it launches, write command "myallocation", you should get something like this:
+4. Download this repository to CHPC (if you haven't done it before)
+
+```
+[u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
+```
+
+5. Once it launches, write command "myallocation", you should get something like this:
 
 ```
 [u1111111@notchpeak1:~]$ myallocation
@@ -89,16 +95,16 @@ Accept the connection and proceed to notchpeak.chpc.utah.edu
 	You can use preemptable mode on lonepeak. Account: owner-guest, Partition: lonepeak-guest
 	You have a GPU allocation on lonepeak. Account: lonepeak-gpu, Partition: lonepeak-gpu
 ```
-5. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np```, ```notchpeak-gpu:notchpeak-gpu``` (containts ```gpu```). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
+6. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np```, ```notchpeak-gpu:notchpeak-gpu``` (containts ```gpu```). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
 
-6. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
+7. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
 
 ```
 [u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1
 --ntasks=1 --gres=gpu -t 1:00:00 --pty bash
 ```
 
-7. After success, we are on the GPU-allocation from where we can launch Jupyter Notebook. Use the following commands to launch Jupyter Notebook:
+8. After success, we are on the GPU-allocation from where we can launch Jupyter Notebook. Use the following commands to launch Jupyter Notebook:
 ```
 [u1111111@notch367:~]$ module load python3
 [u1111111@notch367:~]$ jupyter notebook --browser=/usr/bin/google-chrome
