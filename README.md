@@ -44,7 +44,9 @@ where `yourname` is your user name and `remoteserver` is the host name of the re
 
 Then, open a web browser and paste the link that you copied from before.
 
-Or, another way to do it using your web-browser on the local machine and CHPC.
+If you do not have a remote machine or GPU on your machine, you can use CHPC (super-computer of the University of Utah).
+
+## Using Jupyter Notebooks on CHPC
 1. Using your web-browser on the local machine open new window with the following address:
 ```
 https://notchpeak.chpc.utah.edu:3300
@@ -87,9 +89,9 @@ Accept the connection and proceed to notchpeak.chpc.utah.edu
 	You can use preemptable mode on lonepeak. Account: owner-guest, Partition: lonepeak-guest
 	You have a GPU allocation on lonepeak. Account: lonepeak-gpu, Partition: lonepeak-gpu
 ```
-5. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np``` or ```notchpeak-gpu:notchpeak-gpu```. Also pay attention to an allocation for this account (notchpeak/lonepeak...)
+5. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np```, ```notchpeak-gpu:notchpeak-gpu``` (containts ```gpu```). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
 
-6. Let's connect to the chosen account to access gpu resources. Here is an example for soc-gpu-np:soc-gpu-np allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
+6. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
 
 ```
 [u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1
