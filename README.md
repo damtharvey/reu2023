@@ -63,7 +63,7 @@ Accept the connection and proceed to notchpeak.chpc.utah.edu
 [u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
 ```
 
-5. Once it launches, write command "myallocation", you should get something like this:
+5. Once you are done, write command "myallocation", you should get something like this:
 
 ```
 [u1111111@notchpeak1:~]$ myallocation
