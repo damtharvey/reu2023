@@ -18,6 +18,22 @@ The setup for Anaconda and Miniconda will essentially be the same. Look here: ht
 6. To install Jupyter, with your environment activated, use the command: `conda install jupyter`
 7. To open Jupyter Notebook, use the command: `jupyter notebook`
 
+## Installing Miniconda to CHPC:
+1. Open new terminal on your machine and connect to CHPC using command:
+```ssh [your_uid]@notchpeak.chpc.utah.edu```
+The password is the same as for your Canvas account.
+2. Download Miniconda installer:
+```[u1111111@notchpeak1:~]$ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh```
+3. Run the installer:
+```[u1111111@notchpeak1:~]$ bash ./Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/software/pkg/miniconda3 -s```
+4. Create an user environment module. First create a directory where the user environment module hierarchy will reside, and then copy our miniconda module file to this directory.
+```[u1111111@notchpeak1:~]$ mkdir -p $HOME/MyModules/miniconda3```
+```[u1111111@notchpeak1:~]$ cp /uufs/chpc.utah.edu/sys/installdir/python/modules/miniconda3/latest.lua $HOME/MyModules/miniconda3```
+5. Load the user space miniconda module.
+```[u1111111@notchpeak1:~]$ module use $HOME/MyModules```
+```[u1111111@notchpeak1:~]$ module load miniconda3/latest```
+6. Verify your installation of conda by opening the terminal (or Anaconda Prompt on Windows) and running `conda list`.
+
 # Installing Packages
 **Python should already be installed in any environments you make with `conda`**. To install it manually, or to change the version, activate your environment and run `conda install python=version`, where `version` is the Python version you want to install, e.g. `3.10`. The material in this repository assumes you have at least version `3.10`.
 
