@@ -50,7 +50,13 @@ The setup for Anaconda and Miniconda will essentially be the same. Look here: ht
 
 8. To install Jupyter, with your environment activated, use the command: `conda install jupyter`
 
-9. Feel free to close this terminal after you are done.
+9. Don't forget to clone this repository (if you haven't done it before)
+
+```
+(base) [u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
+```
+
+10. Feel free to close this terminal after you are done.
 
 # Installing Packages
 **Python should already be installed in any environments you make with `conda`**. To install it manually, or to change the version, activate your environment and run `conda install python=version`, where `version` is the Python version you want to install, e.g. `3.10`. The material in this repository assumes you have at least version `3.10`.
@@ -85,64 +91,17 @@ If you do not have a remote machine or GPU on your machine, you can use CHPC (su
 
 2. Using your web-browser on the local machine open new window with the following address:
 ```
-https://notchpeak.chpc.utah.edu:3300
-```
-Accept the connection and proceed to notchpeak.chpc.utah.edu
-
-3. Log in using your Username (U-ID starting with letter 'u') and Password.
-
-4. Now you are on CHPC. From the main page create a new terminal by clicking "+" button, select "xterm"
-
-5. Download this repository to CHPC (if you haven't done it before)
-
-```
-(base) [u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
+https://ondemand.chpc.utah.edu
 ```
 
-6. Once you are done, write command "myallocation", you should get something like this:
+3. Log in using your Username and Password.
 
-```
-(base) [u1111111@notchpeak1:~]$ myallocation
-	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak
-	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak-shared
-	You have an owner allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-gpu-kp
-	You have an owner allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-shared-gpu
-	You have an owner allocation on kingspeak. Account: soc-kp, Partition: soc-kp
-	You have an owner allocation on kingspeak. Account: soc-kp, Partition: soc-shared-kp
-	You can use preemptable mode on kingspeak. Account: owner-guest, Partition: kingspeak-guest
-	You can use preemptable GPU mode on kingspeak. Account: owner-gpu-guest, Partition: kingspeak-gpu-guest
-	You have a GPU allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-gpu-kp
-	You have a GPU allocation on kingspeak. Account: kingspeak-gpu, Partition: kingspeak-gpu
-	Your group cs-reu does not have a general allocation on notchpeak
-	You can use preemptable mode on notchpeak. Account: cs-reu, Partition: notchpeak-freecycle
-	You can use preemptable mode on notchpeak. Account: cs-reu, Partition: notchpeak-shared-freecycle
-	You have a general allocation on notchpeak. Account: dtn, Partition: notchpeak-dtn
-	You have a general allocation on notchpeak. Account: notchpeak-shared-short, Partition: notchpeak-shared-short
-	You have an owner allocation on notchpeak. Account: soc-gpu-np, Partition: soc-gpu-np
-	You have an owner allocation on notchpeak. Account: soc-gpu-np, Partition: soc-shared-gpu
-	You have an owner allocation on notchpeak. Account: coe-np, Partition: coestudent-np
-	You have an owner allocation on notchpeak. Account: coe-np, Partition: coestudent-shared-np
-	You can use preemptable GPU mode on notchpeak. Account: owner-gpu-guest, Partition: notchpeak-gpu-guest
-	You can use preemptable mode on notchpeak. Account: owner-guest, Partition: notchpeak-guest
-	You have a GPU allocation on notchpeak. Account: soc-gpu-np, Partition: soc-gpu-np
-	You have a GPU allocation on notchpeak. Account: notchpeak-gpu, Partition: notchpeak-gpu
-	You have a general allocation on lonepeak. Account: cs-reu, Partition: lonepeak
-	You have a general allocation on lonepeak. Account: cs-reu, Partition: lonepeak-shared
-	You can use preemptable mode on lonepeak. Account: owner-guest, Partition: lonepeak-guest
-	You have a GPU allocation on lonepeak. Account: lonepeak-gpu, Partition: lonepeak-gpu
-```
-7. Now, select an account and partition with GPU, here it can be ```soc-gpu-np:soc-gpu-np```, ```notchpeak-gpu:notchpeak-gpu``` (containts ```gpu```). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
+4. Now you are on CHPC. Choose Jupyter among all the Pinned Apps
 
-8. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
+5. Create a Notebook, choose account and partition so, that it will contain "gpu" in both names. Choose Advanced Options - GPU-type [any] and click to launch
 
-```
-(base) [u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1
---ntasks=1 --gres=gpu -t 1:00:00 --pty bash
-```
+6. After a successful start connect to the Notebook, choose the Notebook you want to launch
 
-9. After success, we are on the GPU-allocation from where we can launch Jupyter Notebook. Use the following commands to launch Jupyter Notebook:
-```
-(base) [u1111111@notch367:~]$ conda activate [your_env_name]
-(your_env_name) [u1111111@notch367:~]$ ml cuda
-(your_env_name) [u1111111@notch367:~]$ python3 -m notebook --browser=/usr/bin/google-chrome
-```
+7. After laucnh, in widgets go to `Kernel` -> `change Kernel` -> Python (your env)
+
+8. Enjoy! 
