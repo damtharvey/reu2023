@@ -102,6 +102,6 @@ https://ondemand.chpc.utah.edu
 
 6. After a successful start connect to the Notebook, choose the Notebook you want to launch
 
-7. After laucnh, in widgets go to `Kernel` -> `change Kernel` -> Python (your env)
+7. After launch, in widgets go to `Kernel` -> `change Kernel` -> `Python (your env)`
 
 8. Enjoy! 
