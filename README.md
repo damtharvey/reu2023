@@ -50,13 +50,20 @@ The setup for Anaconda and Miniconda will essentially be the same. Look here: ht
 
 8. To install Jupyter, with your environment activated, use the command: `conda install jupyter`
 
-9. Don't forget to clone this repository (if you haven't done it before)
+9. Now, set up a kernel to use this conda environment from Jupyter Notebook
+
+```
+(your_env_name) [u1111111@notchpeak1:~]$ conda install ipykernel
+(your_env_name) [u1111111@notchpeak1:~]$ python3 -m ipykernel install --user --name your_env_name --display-name "Python (your_env_name)"
+``` 
+
+10. Don't forget to clone this repository (if you haven't done it before)
 
 ```
 (base) [u1111111@notchpeak1:~]$ git clone https://github.com/damtharvey/reu2023.git
 ```
 
-10. Feel free to close this terminal after you are done.
+11. Feel free to close this terminal after you are done.
 
 # Installing Packages
 **Python should already be installed in any environments you make with `conda`**. To install it manually, or to change the version, activate your environment and run `conda install python=version`, where `version` is the Python version you want to install, e.g. `3.10`. The material in this repository assumes you have at least version `3.10`.
