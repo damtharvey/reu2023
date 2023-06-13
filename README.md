@@ -1,6 +1,6 @@
 # TREU 2023
 
-## Note: Due to formatting inconsistencies, these notebooks are meant to be run with Jupyter Notebook and not Google Colab. If you run them with Google Colab, the functionality will be the same, but the formatting may not. You may also need to figure out a way to load the required images in Colab. See below for instructions on how to install and run Jupyter Notebook with Anaconda or Miniconda.
+## Note: See below for instructions on how to install and run Jupyter Notebook with Anaconda or Miniconda.
 
 # Installing Anaconda: 
 We recommend using Anaconda or Miniconda to manage your Python environments.
