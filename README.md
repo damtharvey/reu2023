@@ -112,3 +112,61 @@ https://ondemand.chpc.utah.edu
 7. After launch, in widgets go to `Kernel` -> `change Kernel` -> `Python (your env)`
 
 8. Enjoy! 
+
+# Working with CHPC through terminal
+
+1. Open your terminal and connect to CHPC using ssh protocol (change u1111111 to your ID), the password will be your university password.
+```
+user@user:~$ ssh u1111111@notchpeak.chpc.utah.edu
+```
+
+2. Make sure that you have installed Miniconda on CHPC. It is easy to check, if you have indicator `(base)` in your terminal - you are good. Otherwise you need to go to the instructions above.
+
+3. Once you are done, write command "myallocation", you should get something like this:
+```
+(base) [u1111111@notchpeak1:~]$ myallocation
+	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak
+	You have a general allocation on kingspeak. Account: cs-reu, Partition: kingspeak-shared
+	You have an owner allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-gpu-kp
+	You have an owner allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-shared-gpu
+	You have an owner allocation on kingspeak. Account: soc-kp, Partition: soc-kp
+	You have an owner allocation on kingspeak. Account: soc-kp, Partition: soc-shared-kp
+	You can use preemptable mode on kingspeak. Account: owner-guest, Partition: kingspeak-guest
+	You can use preemptable GPU mode on kingspeak. Account: owner-gpu-guest, Partition: kingspeak-gpu-guest
+	You have a GPU allocation on kingspeak. Account: soc-gpu-kp, Partition: soc-gpu-kp
+	You have a GPU allocation on kingspeak. Account: kingspeak-gpu, Partition: kingspeak-gpu
+	Your group cs-reu does not have a general allocation on notchpeak
+	You can use preemptable mode on notchpeak. Account: cs-reu, Partition: notchpeak-freecycle
+	You can use preemptable mode on notchpeak. Account: cs-reu, Partition: notchpeak-shared-freecycle
+	You have a general allocation on notchpeak. Account: dtn, Partition: notchpeak-dtn
+	You have a general allocation on notchpeak. Account: notchpeak-shared-short, Partition: notchpeak-shared-short
+	You have an owner allocation on notchpeak. Account: soc-gpu-np, Partition: soc-gpu-np
+	You have an owner allocation on notchpeak. Account: soc-gpu-np, Partition: soc-shared-gpu
+	You have an owner allocation on notchpeak. Account: coe-np, Partition: coestudent-np
+	You have an owner allocation on notchpeak. Account: coe-np, Partition: coestudent-shared-np
+	You can use preemptable GPU mode on notchpeak. Account: owner-gpu-guest, Partition: notchpeak-gpu-guest
+	You can use preemptable mode on notchpeak. Account: owner-guest, Partition: notchpeak-guest
+	You have a GPU allocation on notchpeak. Account: soc-gpu-np, Partition: soc-gpu-np
+	You have a GPU allocation on notchpeak. Account: notchpeak-gpu, Partition: notchpeak-gpu
+	You have a general allocation on lonepeak. Account: cs-reu, Partition: lonepeak
+	You have a general allocation on lonepeak. Account: cs-reu, Partition: lonepeak-shared
+	You can use preemptable mode on lonepeak. Account: owner-guest, Partition: lonepeak-guest
+	You have a GPU allocation on lonepeak. Account: lonepeak-gpu, Partition: lonepeak-gpu
+```
+
+4. Now we need to allocate resources on our account, we need to determine: how many cores we want, do we want GPU or not, for how long we are going to use our account.
+
+   Select an account and partition with GPU, here it can be soc-gpu-np:soc-gpu-np, notchpeak-gpu:notchpeak-gpu (containts gpu). Also pay attention to an allocation for this account (notchpeak/lonepeak...)
+
+5. Let's connect to the chosen account to access gpu resources. Here is an example for allocation:notchpeak, account:soc-gpu-np, partition:soc-gpu-np, allocation for 1 hour(-t), 1 physical compute node (--nodes) and 1 logical process (--ntasks)
+```
+(base) [u1111111@notchpeak1:~]$ srun -M notchpeak --account=soc-gpu-np --partition=soc-gpu-np --nodes=1 --ntasks=1 --gres=gpu -t 1:00:00 --pty bash
+```
+
+6. After success, we are on the GPU-allocation from where we can launch anything we want. Use the following commands to activate conda environment and load module cuda (for GPU):
+```
+(base) [u1111111@notch367:~]$ conda activate [your_env_name]
+(your_env_name) [u1111111@notch367:~]$ ml cuda
+```
+
+7. Now you are on your own to launch anything you want!
